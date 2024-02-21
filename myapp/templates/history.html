@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href=" {% static 'css/style.css' %}">
+<style>
+    #customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+{% include 'header.html' %}
+<div align="center" style="margin-top:100px">
+    <table id="customers">
+    <thead>
+        <th style="font-size:20px">Email</th>
+        <th style="font-size:20px">from</th>
+        <th style="font-size:20px">to</th>
+        <th style="font-size:20px">amount</th>
+        <th style="font-size:20px">Date and time</th>
+        <th style="font-size:20px">Payment status</th>
+    </thead>
+    {% for i in data %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.from_duration}}</td>
+            <td>{{i.from_to}}</td>
+            <td>{{i.amount}}</td>
+            <td>{{i.booking_date}}</td>
+            <td>
+                {%if i.paystatus == 1%}
+                    {{'paid'}}
+                {%endif%}
+                {%if i.paystatus == 0%}
+                    {{'unpaid'}}
+                {%endif%}</td>
+        </tr>
+    {%endfor%}
+</table>
+</div>
+    <script>
+{% if messages %}
+    {% for msg in messages %}
+        alertify.set('notifier','position', 'top-right');
+        alertify.success('{{msg}}');
+    {%endfor%}
+{%endif%}
+ </script>
+{% include 'footer.html' %}
+</body>
+</html>

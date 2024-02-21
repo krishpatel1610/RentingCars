@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href=" {% static 'css/style.css' %}">
+
+</head>
+<body>
+    <header class="header">
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+        <a href="index" class="logo"> <span>max</span>wheels </a>
+
+        <nav class="navbar">
+            <a href="/index">home</a>
+            <a href="/vehicles">vehicles</a>
+            <a href="/services">services</a>
+            <!-- <a href="#featured">featured</a>
+            <a href="#reviews">reviews</a> -->
+            <a href="/contact">contact</a>
+        </nav>
+<!--    <div id="login-btn">-->
+<!--        {% if request.session.log_id %}-->
+<!--            <a class="btn" href="lgout">logout</a>-->
+<!--            <i class="far fa-user"></i>-->
+<!--        {%else%}-->
+<!--             <button class="btn">login</button>-->
+<!--             <i class="far fa-user"></i>-->
+<!--        {%endif%}-->
+<!--        </div>-->
+        <div id="login-btn">
+            <button class="btn" onclick="">checkout</button>
+            <i class="far fa-user"></i>
+        </div>
+
+    </header>
+    <div class="login-form-container">
+
+        <span id="close-login-form" class="fas fa-times"></span>
+    
+        <form action="/bookcar" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <h3>book</h3>
+            <input type="date" placeholder="start  date" class="box" name="from_duration">
+            <input type="hidden" name="rent" value="{{data.rent_per_day}}">
+            <input type="hidden" name="vid" value="{{data.id}}">
+            <input type="date" placeholder="last date" class="box" name="to_duration">
+            <input type="file" class="box" name="ss">
+            <input type="submit" value="checkout" class="btn" name="" id="">
+        </form>
+    </div>
+    <section class="featured" id="featured">
+
+        <h1 class="heading"> <span>featured</span> cars </h1>
+
+        <div class="swiper featured-slider">
+           <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <img src="/media/{{data.vehicle_photo}}" alt="data not available">
+                    <div class="content">
+                        <h3>{{data.vehicle_name}}</h3>
+                        <div class="price">{{data.rent_per_day}}/-</div>
+                        <div class="price">{{data.vehicle_description}}</div>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </section>
+    <script>
+{% if messages %}
+    {% for msg in messages %}
+        alertify.set('notifier','position', 'top-right');
+        alertify.success('{{msg}}');
+    {%endfor%}
+{%endif%}
+ </script>
+    {% include 'footer.html' %}
+</body>
+</html>

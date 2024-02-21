@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css ' %}">
+</head>
+<body>
+{% include 'header.html' %}
+<script>
+{% if messages %}
+    {% for msg in messages %}
+        alert("{{msg}}")
+    {%endfor%}
+{%endif%}
+ </script>
+        <section class="contact" id="contact">
+
+        <h1 class="heading"><span>contact</span> us</h1>
+    
+        <div class="row">
+    
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30153.788252261566!2d72.82321484621745!3d19.141690214227783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1632137920043!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+    
+            <form action="contactfill" method="post">{% csrf_token %}
+                <h3>get in touch</h3>
+                <input type="text" placeholder="your name" class="box" name="name">
+                <input type="email" placeholder="your email" class="box" name="email">
+                <input type="tel" placeholder="Your Phone number" class="box" name="phone">
+                <textarea placeholder="your message" class="box" cols="30" rows="10" name="msg"></textarea>
+                <input type="submit" value="send message" class="btn">
+            </form>
+        </div>
+    </section>
+    <!-- footer --> 
+{% include 'footer.html' %}
+</body>
+</html>

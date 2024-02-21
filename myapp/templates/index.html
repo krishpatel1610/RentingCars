@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href=" {% static 'css/style.css' %}">
+</head>
+
+<body>
+    <header class="header">
+        {% include 'header.html' %}
+    </header>
+<script>
+{% if messages %}
+    {% for msg in messages %}
+        alert("{{msg}}")
+    {%endfor%}
+{%endif%}
+ </script>
+    <section class="home" id="home">
+
+        <h3 data-speed="-2" class="home-parallax">find your car</h3>
+    
+        <img data-speed="5" class="home-parallax" src="{% static 'image/home-img.png' %}" alt="">
+    
+        <a data-speed="7" href="#" class="btn home-parallax">explore cars</a>
+    
+    </section>
+
+    <section class="icons-container">
+        <div class="icons">
+            <i class="fas fa-car"></i>
+            <div class="content">
+                <h3>4770+</h3>
+                <p>cars sold</p>
+            </div>
+        </div>
+    
+        <div class="icons">
+            <i class="fas fa-users"></i>
+            <div class="content">
+                <h3>320+</h3>
+                <p>happy clients</p>
+            </div>
+        </div>
+    
+        <div class="icons">
+            <i class="fas fa-car"></i>
+            <div class="content">
+                <h3>1500+</h3>
+                <p>news cars</p>
+            </div>
+        </div>
+    
+    </section>
+
+    <section class="vehicles" id="vehicles">
+
+        <h1 class="heading"> popular <span>vehicles</span> </h1>
+    
+        <div class="swiper vehicles-slider">
+    
+            <div class="swiper-wrapper">
+        {% for d in data %}
+                <div class="swiper-slide box">
+                    <img src="media/{{d.vehicle_photo}}" height="300px" alt="">
+                    <div class="content">
+                        <h3>{{d.vehicle_name}}</h3>
+                        <div class="price">{{d.rent_per_day}}/-</div>
+                        <a href="checkout/{{d.id}}" class="btn">book</a>
+                    </div>
+                </div>
+        {%endfor%}
+
+    
+            </div>
+    
+            <div class="swiper-pagination"></div>
+    
+        </div>
+    
+    </section>
+    <section class="services" id="services">
+
+        <h1 class="heading"> our <span>services</span> </h1>
+    
+        <div class="box-container">
+    
+            <div class="box">
+                <i class="fas fa-car"></i>
+                <h3>car selling</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+                <a href="#" class="btn"> read more</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-tools"></i>
+                <h3>parts repair</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+                <a href="#" class="btn"> read more</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-car-crash"></i>
+                <h3>car insurance</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+                <a href="#" class="btn"> read more</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-car-battery"></i>
+                <h3>battery replacement</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+                <a href="#" class="btn"> read more</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-gas-pump"></i>
+                <h3>oil change</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+                <a href="#" class="btn"> read more</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-headset"></i>
+                <h3>24/7 support</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nisi.</p>
+                <a href="#" class="btn"> read more</a>
+            </div>
+
+        </div>
+    
+    </section>
+
+
+    <section class="featured" id="featured">
+
+        <h1 class="heading"> <span>featured</span> cars </h1>
+    
+        <div class="swiper featured-slider">
+    
+           <div class="swiper-wrapper">
+    {% for d in data %}
+                <div class="swiper-slide box">
+                    <img src="media/{{d.vehicle_photo}}" alt="">
+                    <div class="content">
+                        <h3>{{d.vehicle_name}}</h3>
+                        <div class="price">{{d.rent_per_day}}/-</div>
+                        <a href="checkout/{{d.id}}" class="btn">book</a>
+                    </div>
+                </div>
+    {%endfor%}
+           </div>
+    
+           <div class="swiper-pagination"></div>
+    
+        </div>
+    
+        <div class="swiper featured-slider">
+    
+            <div class="swiper-wrapper">
+            </div>
+     
+            <div class="swiper-pagination"></div>
+     
+         </div>
+    
+    </section>
+
+  <section class="contact" id="contact">
+
+        <h1 class="heading"><span>contact</span> us</h1>
+
+        <div class="row">
+
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30153.788252261566!2d72.82321484621745!3d19.141690214227783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1632137920043!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+
+            <form action="contactfill" method="post">{% csrf_token %}
+                <h3>get in touch</h3>
+                <input type="text" placeholder="your name" class="box" name="name">
+                <input type="email" placeholder="your email" class="box" name="email">
+                <input type="tel" placeholder="Your Phone number" class="box" name="phone">
+                <textarea placeholder="your message" class="box" cols="30" rows="10" name="msg"></textarea>
+                <input type="submit" value="send message" class="btn">
+            </form>
+        </div>
+    </section>
+{% include 'footer.html' %}
+</body>
+</html>

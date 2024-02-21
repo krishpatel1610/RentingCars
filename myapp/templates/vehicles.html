@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <section class="home" id="home">
+
+        <section class="vehicles" id="vehicles">
+
+            <h1 class="heading"> popular <span>vehicles</span> </h1>
+
+            <div class="swiper vehicles-slider">
+
+                <div class="swiper-wrapper">
+    {% for d in data %}
+                <div class="swiper-slide box">
+                    <img src="media/{{d.vehicle_photo}}" alt="">
+                    <div class="content">
+                        <h3>{{d.vehicle_name}}</h3>
+                        <div class="price">{{d.rent_per_day}}/-</div>
+                           <div id="login-btn">
+                         <a href="checkout/{{d.id}}" class="btn">book</a>
+                    </div>
+                </div>
+    {%endfor%}
+
+                </div>
+
+                <div class="swiper-pagination"></div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+    <section class="featured" id="featured">
+
+        <h1 class="heading"> <span>featured</span> cars </h1>
+
+        <div class="swiper featured-slider">
+
+           <div class="swiper-wrapper">
+    {% for d in data %}
+                <div class="swiper-slide box">
+                    <img src="media/{{d.vehicle_photo}}" alt="">
+                    <div class="content">
+                        <h3>{{d.vehicle_name}}</h3>
+                        <div class="price">{{d.rent_per_day}}/-</div>
+                           <div id="login-btn">
+                         <a href="checkout/{{d.id}}" class="btn">book</a>
+                    </div>
+                </div>
+    {%endfor%}
+           </div>
+           <div class="swiper-pagination"></div>
+        </div>
+        <div class="swiper featured-slider">
+
+            <div class="swiper-wrapper">
+            </div>
+            <div class="swiper-pagination"></div>
+         </div>
+    </section>
+
+{% include 'footer.html' %}
+</body>
+
+</html>
